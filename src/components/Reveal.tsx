@@ -15,11 +15,11 @@ interface RevealProps {
 }
 
 const hiddenByVariant: Record<RevealVariant, string> = {
-  up: "opacity-0 translate-y-7",
-  left: "opacity-0 -translate-x-8",
-  right: "opacity-0 translate-x-8",
+  up: "opacity-0 translate-y-5 sm:translate-y-7",
+  left: "opacity-0 -translate-x-4 sm:-translate-x-8",
+  right: "opacity-0 translate-x-4 sm:translate-x-8",
   fade: "opacity-0",
-  scale: "opacity-0 scale-[0.96]",
+  scale: "opacity-0 scale-[0.97] sm:scale-[0.96]",
 };
 
 /**

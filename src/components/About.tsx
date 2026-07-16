@@ -6,9 +6,8 @@ import NeuralMesh from "./NeuralMesh";
 
 function PortraitStage() {
   return (
-    <Reveal variant="left" delay={60} className="relative">
-      <div className="about-portrait relative mx-auto max-w-md lg:max-w-none">
-        {/* Atmospheric stage behind the figure */}
+    <Reveal variant="up" delay={60} className="relative w-full">
+      <div className="about-portrait relative mx-auto w-full max-w-[280px] sm:max-w-sm lg:max-w-none">
         <div className="about-portrait-stage" aria-hidden="true">
           <div className="about-portrait-bloom" />
           <div className="about-portrait-bloom about-portrait-bloom-secondary" />
@@ -25,7 +24,8 @@ function PortraitStage() {
             width={720}
             height={900}
             priority
-            className="about-portrait-img relative z-10 mx-auto h-auto w-full max-w-[420px] object-contain object-bottom select-none"
+            sizes="(max-width: 640px) 280px, (max-width: 1024px) 384px, 420px"
+            className="about-portrait-img relative z-10 mx-auto h-auto w-full object-contain object-bottom select-none"
           />
           <div className="about-portrait-fade" aria-hidden="true" />
         </div>
@@ -36,21 +36,23 @@ function PortraitStage() {
 
 export default function About() {
   return (
-    <section id="about" className="relative py-20 sm:py-28 overflow-hidden">
+    <section id="about" className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
       <NeuralMesh variant="nodes" className="opacity-50" />
       <div
         className="about-section-glow pointer-events-none absolute inset-0"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-6xl px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] gap-10 lg:gap-14 items-end lg:items-center">
-          <PortraitStage />
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] gap-8 sm:gap-10 lg:gap-14 items-center">
+          <div className="order-1 lg:order-1 flex justify-center lg:justify-start">
+            <PortraitStage />
+          </div>
 
-          <div className="pb-2">
+          <div className="order-2 pb-2 min-w-0">
             <Reveal>
-              <p className="eyebrow mb-4">About</p>
-              <h2 className="section-heading mb-8">
+              <p className="eyebrow mb-3 sm:mb-4">About</p>
+              <h2 className="section-heading mb-6 sm:mb-8">
                 Bridging AI research
                 <br />
                 <span className="text-blue-400">and production systems</span>
@@ -58,7 +60,7 @@ export default function About() {
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="space-y-5 text-text-secondary text-[17px] leading-relaxed">
+              <div className="space-y-4 sm:space-y-5 text-text-secondary text-[15px] sm:text-[17px] leading-relaxed">
                 <p>
                   I work across traditional AI (computer vision, deep learning) and
                   modern generative systems: autonomous agents, RAG pipelines, and

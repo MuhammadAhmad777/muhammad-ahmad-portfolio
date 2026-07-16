@@ -28,21 +28,23 @@ function MetricItem({
       }`}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
     >
-      <p className="text-3xl sm:text-4xl font-bold text-text-primary tabular-nums">
+      <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary tabular-nums">
         {count}
         <span className="text-blue-400">{suffix}</span>
       </p>
-      <p className="mt-1.5 text-sm text-text-secondary leading-snug">{label}</p>
+      <p className="mt-1.5 text-xs sm:text-sm text-text-secondary leading-snug px-1">
+        {label}
+      </p>
     </div>
   );
 }
 
 export default function Metrics() {
   return (
-    <section className="relative py-16 sm:py-20 border-y border-white/5">
+    <section className="relative py-12 sm:py-16 lg:py-20 border-y border-white/5">
       <NeuralMesh variant="nodes" className="opacity-60" />
-      <div className="relative mx-auto max-w-5xl px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+      <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6">
           {metrics.map((metric, i) => (
             <MetricItem
               key={metric.label}

@@ -178,7 +178,7 @@ export default function SignalRing() {
     >
       <canvas
         ref={canvasRef}
-        className="w-[560px] h-[560px] max-w-full max-h-full"
+        className="w-[min(100vw,560px)] h-[min(100vw,560px)] max-w-full opacity-50 sm:opacity-100 scale-90 sm:scale-100"
         style={{ willChange: "transform" }}
       />
     </div>
