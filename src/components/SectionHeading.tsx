@@ -1,4 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
+import Reveal from "./Reveal";
 
 interface SectionHeadingProps {
   eyebrow: string;
@@ -14,9 +17,9 @@ export default function SectionHeading({
   headingClassName = "",
 }: SectionHeadingProps) {
   return (
-    <div className={className}>
+    <Reveal className={className}>
       <p className="eyebrow mb-4">{eyebrow}</p>
       <h2 className={`section-heading ${headingClassName}`}>{children}</h2>
-    </div>
+    </Reveal>
   );
 }

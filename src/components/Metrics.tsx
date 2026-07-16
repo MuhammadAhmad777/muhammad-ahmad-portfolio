@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { metrics } from "@/lib/data";
-import { useScrollReveal, useCountUp } from "@/lib/hooks";
+import { useInViewToggle, useCountUp } from "@/lib/hooks";
 import NeuralMesh from "./NeuralMesh";
 
 function MetricItem({
@@ -17,16 +17,16 @@ function MetricItem({
   delay: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const visible = useScrollReveal(ref, 0.3);
+  const visible = useInViewToggle(ref, 0.35);
   const count = useCountUp(value, visible);
 
   return (
     <div
       ref={ref}
-      className={`text-center transition-all duration-700 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+      className={`text-center reveal-base ${
+        visible ? "reveal-shown" : "reveal-exit opacity-0 translate-y-4"
       }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
     >
       <p className="text-3xl sm:text-4xl font-bold text-text-primary tabular-nums">
         {count}

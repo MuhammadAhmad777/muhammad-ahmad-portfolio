@@ -12,7 +12,7 @@ export default function Skills() {
           {skillCategories.map((category, i) => (
             <GlassCard
               key={category.title}
-              delay={i * 90}
+              delay={60 + i * 70}
               className={category.span === "lg" ? "md:col-span-2" : ""}
             >
               <h3 className="text-lg font-semibold text-text-primary mb-5">

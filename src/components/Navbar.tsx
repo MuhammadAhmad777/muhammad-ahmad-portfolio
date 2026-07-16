@@ -25,8 +25,16 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-16">
         <a
           href="#top"
-          className="text-lg font-bold text-text-primary tracking-tight"
+          className="flex items-center gap-2.5 text-lg font-bold text-text-primary tracking-tight"
         >
+          <img
+            src="/favicon/favicon-32x32.png"
+            alt=""
+            width={28}
+            height={28}
+            className="rounded-full"
+            aria-hidden="true"
+          />
           {siteConfig.name.split(" ")[0]}
           <span className="text-blue-400">.</span>
         </a>

@@ -187,23 +187,23 @@ export const research = {
 
 export const philosophyPrinciples = [
   {
-    title: "Systems over features",
+    title: "Ship the system, not the slide",
     description:
-      "Every feature ships as part of a system with clear interfaces, defined failure modes, and a path to scale. I design for the whole lifecycle, not the demo.",
+      "A polished demo is easy. A reliable pipeline under real traffic is the work. I design APIs, failure modes, and monitoring as carefully as the model itself.",
   },
   {
-    title: "Production is the only benchmark",
+    title: "Measure what users feel",
     description:
-      "A model that works in a notebook is a starting point. I care about data pipelines, deployment, monitoring, and what happens when traffic spikes at 2 AM.",
+      "Latency, accuracy, and cost only matter when they show up in someone's day. I tune for outcomes people notice: faster answers, fewer handoffs, fewer broken flows.",
   },
   {
-    title: "Simplicity scales",
+    title: "Keep the stack honest",
     description:
-      "The best architectures fit in a short conversation. I avoid unnecessary abstraction and optimize for clarity, testability, and maintainability.",
+      "I add complexity only when the problem demands it. Clear interfaces, readable code, and boring infrastructure beat clever layers you cannot debug at midnight.",
   },
   {
-    title: "Bridge the gap",
+    title: "Own the gap between model and product",
     description:
-      "The hardest problems sit between AI capability and engineering rigor. I work across both: training models, building APIs, and shipping interfaces people actually use.",
+      "Training a model is one step. Wiring it into data, auth, UX, and ops is the rest. I work across that seam so AI capabilities become something teams can actually run.",
   },
 ];
