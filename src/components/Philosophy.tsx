@@ -12,7 +12,7 @@ export default function Philosophy() {
 
         <div className="mt-12">
           {philosophyPrinciples.map((principle, i) => (
-            <Reveal key={principle.title} delay={i * 100}>
+            <Reveal key={principle.title} delay={i * 90} variant="up">
               <div
                 className={`flex items-start gap-5 py-8 ${
                   i < philosophyPrinciples.length - 1

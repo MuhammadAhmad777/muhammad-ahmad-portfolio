@@ -24,6 +24,39 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Shared scroll-reveal base — snappy ease so content arrives with the scroll */
+.reveal-base {
+  transition-property: opacity, transform, filter;
+  transition-duration: 0.55s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-shown {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Faster exit when leaving the viewport so re-entry feels crisp */
+.reveal-exit {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+}
+
+/* Hero load stagger (above the fold) */
+.hero-enter {
+  opacity: 0;
+  animation: hero-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-enter-1 { animation-delay: 0.05s; }
+.hero-enter-2 { animation-delay: 0.14s; }
+.hero-enter-3 { animation-delay: 0.24s; }
+.hero-enter-4 { animation-delay: 0.34s; }
+.hero-enter-5 { animation-delay: 0.44s; }
+.hero-enter-6 { animation-delay: 0.54s; }
+
 body {
   background-color: #0A0E17;
   color: #F4F6FB;
@@ -53,7 +86,11 @@ body {
   }
 
   .glass-panel-hover {
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    /* Keep transform in sync with reveal-base so hover lift still works */
+    transition-property: opacity, transform, filter, box-shadow, border-color;
+    transition-duration: 0.55s, 0.55s, 0.55s, 0.25s, 0.25s;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1),
+      cubic-bezier(0.22, 1, 0.36, 1), cubic-bezier(0.22, 1, 0.36, 1), ease, ease;
   }
 
   .glass-panel-hover:hover {
@@ -145,6 +182,244 @@ body {
   .animation-delay-2000 {
     animation-delay: 2s;
   }
+
+  .about-glyphs .glyph {
+    position: absolute;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(79, 139, 255, 0.55);
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .about-glyphs .glyph-a {
+    top: 18%;
+    left: 12%;
+    font-size: 2.75rem;
+    color: rgba(79, 139, 255, 0.7);
+    animation: glyph-float 7s ease-in-out infinite;
+  }
+
+  .about-glyphs .glyph-b {
+    top: 42%;
+    right: 8%;
+    font-size: 1.65rem;
+    color: rgba(163, 173, 194, 0.45);
+    animation: glyph-float 8.5s ease-in-out infinite reverse;
+    animation-delay: -1.5s;
+  }
+
+  .about-glyphs .glyph-c {
+    bottom: 22%;
+    left: 18%;
+    font-size: 1.35rem;
+    color: rgba(79, 139, 255, 0.4);
+    animation: glyph-drift 9s ease-in-out infinite;
+    animation-delay: -2s;
+  }
+
+  .about-glyphs .glyph-d {
+    top: 28%;
+    right: 28%;
+    font-size: 1.5rem;
+    color: rgba(99, 102, 241, 0.45);
+    animation: glyph-float 6.5s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+
+  .about-glyphs .glyph-e {
+    bottom: 14%;
+    right: 22%;
+    font-size: 1.2rem;
+    color: rgba(163, 173, 194, 0.35);
+    animation: glyph-drift 10s ease-in-out infinite reverse;
+    animation-delay: -4s;
+  }
+
+  .about-glyphs .glyph-ring {
+    position: absolute;
+    inset: 12%;
+    border-radius: 50%;
+    border: 1px solid rgba(79, 139, 255, 0.12);
+    animation: glyph-spin 28s linear infinite;
+  }
+
+  .about-glyphs .glyph-ring::before,
+  .about-glyphs .glyph-ring::after {
+    content: "";
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(79, 139, 255, 0.55);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.35);
+  }
+
+  .about-glyphs .glyph-ring::before {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .about-glyphs .glyph-ring::after {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background: rgba(99, 102, 241, 0.5);
+  }
+
+  .about-glyphs .glyph-ring-delayed {
+    inset: 22%;
+    border-color: rgba(99, 102, 241, 0.1);
+    animation-duration: 40s;
+    animation-direction: reverse;
+  }
+
+  /* About portrait stage */
+  .about-section-glow {
+    background:
+      radial-gradient(
+        ellipse 55% 50% at 22% 55%,
+        rgba(59, 130, 246, 0.1) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 40% 35% at 80% 20%,
+        rgba(99, 102, 241, 0.06) 0%,
+        transparent 70%
+      );
+  }
+
+  .about-portrait-stage {
+    position: absolute;
+    inset: 8% 6% 0;
+    pointer-events: none;
+  }
+
+  .about-portrait-bloom {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    width: 78%;
+    aspect-ratio: 1;
+    margin-left: -39%;
+    margin-top: -39%;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(79, 139, 255, 0.28) 0%,
+      rgba(59, 130, 246, 0.1) 35%,
+      transparent 68%
+    );
+    filter: blur(8px);
+    animation: about-bloom 8s ease-in-out infinite;
+  }
+
+  .about-portrait-bloom-secondary {
+    width: 55%;
+    top: 58%;
+    margin-left: -27.5%;
+    margin-top: -27.5%;
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.18) 0%,
+      transparent 70%
+    );
+    animation-delay: -3s;
+    animation-duration: 10s;
+  }
+
+  .about-portrait-ring {
+    position: absolute;
+    left: 50%;
+    top: 46%;
+    width: 88%;
+    aspect-ratio: 1;
+    margin-left: -44%;
+    margin-top: -44%;
+    border-radius: 50%;
+    border: 1px solid rgba(79, 139, 255, 0.16);
+    animation: glyph-spin 36s linear infinite;
+  }
+
+  .about-portrait-ring::before,
+  .about-portrait-ring::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(79, 139, 255, 0.7);
+    box-shadow: 0 0 14px rgba(59, 130, 246, 0.45);
+  }
+
+  .about-portrait-ring::before {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .about-portrait-ring::after {
+    bottom: 18%;
+    right: 8%;
+    background: rgba(99, 102, 241, 0.65);
+  }
+
+  .about-portrait-ring-inner {
+    width: 68%;
+    margin-left: -34%;
+    margin-top: -34%;
+    border-color: rgba(99, 102, 241, 0.12);
+    animation-duration: 48s;
+    animation-direction: reverse;
+  }
+
+  .about-accent-glyph {
+    position: absolute;
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-weight: 500;
+    color: rgba(79, 139, 255, 0.35);
+    letter-spacing: 0.04em;
+    user-select: none;
+  }
+
+  .about-accent-a {
+    top: 12%;
+    left: 4%;
+    font-size: 1.35rem;
+    animation: glyph-float 7s ease-in-out infinite;
+  }
+
+  .about-accent-b {
+    top: 22%;
+    right: 6%;
+    font-size: 1.1rem;
+    color: rgba(163, 173, 194, 0.3);
+    animation: glyph-drift 9s ease-in-out infinite reverse;
+  }
+
+  .about-portrait-figure {
+    animation: about-portrait-float 7.5s ease-in-out infinite;
+  }
+
+  .about-portrait-img {
+    filter: drop-shadow(0 24px 48px rgba(5, 7, 13, 0.55));
+  }
+
+  .about-portrait-fade {
+    position: absolute;
+    inset: auto 0 0;
+    height: 28%;
+    background: linear-gradient(
+      to top,
+      #0a0e17 0%,
+      rgba(10, 14, 23, 0.75) 40%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 20;
+  }
 }
 
 @keyframes pulse-slow {
@@ -152,13 +427,64 @@ body {
   50% { opacity: 0.8; transform: scale(1.05); }
 }
 
+@keyframes glyph-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.85; }
+  50% { transform: translateY(-12px) rotate(2deg); opacity: 1; }
+}
+
+@keyframes glyph-drift {
+  0%, 100% { transform: translate(0, 0); opacity: 0.55; }
+  50% { transform: translate(8px, -10px); opacity: 0.9; }
+}
+
+@keyframes glyph-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes about-bloom {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@keyframes about-portrait-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-base,
+  .hero-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .about-glyphs .glyph,
+  .about-glyphs .glyph-ring,
+  .about-glyphs .glyph-ring-delayed,
+  .about-portrait-bloom,
+  .about-portrait-ring,
+  .about-portrait-figure,
+  .about-accent-glyph,
+  .animate-pulse-slow {
+    animation: none !important;
   }
 }

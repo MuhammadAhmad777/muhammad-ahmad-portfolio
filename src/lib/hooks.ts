@@ -3,7 +3,6 @@
 import {
   useState,
   useEffect,
-  useLayoutEffect,
   useSyncExternalStore,
   type RefObject,
 } from "react";
@@ -21,45 +20,27 @@ function getServerSnapshot() {
 }
 
 /**
- * Scroll-triggered reveal hook that is hydration-safe.
- * Returns `true` during SSR and the initial hydration pass so server/client
- * markup matches, then applies intersection-based reveal after hydration.
+ * Bidirectional scroll visibility via IntersectionObserver.
+ * Becomes true when the element enters the viewport and false when it leaves,
+ * so entrance animations can replay on every scroll up/down.
  */
 export function useScrollReveal(
   ref: RefObject<HTMLElement | null>,
-  threshold = 0.15
+  threshold = 0.12,
+  instant = false
 ): boolean {
   const isHydrated = useSyncExternalStore(
     subscribe,
     getClientSnapshot,
     getServerSnapshot
   );
-  const [visible, setVisible] = useState(false);
-
-  // Synchronously reveal in-view elements before paint to avoid a flash.
-  useLayoutEffect(() => {
-    if (!isHydrated) return;
-
-    const el = ref.current;
-    if (!el) return;
-
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) {
-      setVisible(true);
-      return;
-    }
-
-    const { top, bottom } = el.getBoundingClientRect();
-    const inView = top < window.innerHeight * 0.92 && bottom > 0;
-    if (inView) {
-      setVisible(true);
-    }
-  }, [isHydrated, ref]);
+  const [visible, setVisible] = useState(instant);
 
   useEffect(() => {
-    if (!isHydrated || visible) return;
+    if (!isHydrated || instant) {
+      if (instant) setVisible(true);
+      return;
+    }
 
     const el = ref.current;
     if (!el) return;
@@ -74,22 +55,32 @@ export function useScrollReveal(
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(el);
-        }
+        setVisible(entry.isIntersecting);
       },
-      { threshold }
+      {
+        threshold,
+        // Leave a band so leave/enter feels intentional, not flickery.
+        rootMargin: "0px 0px -10% 0px",
+      }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [isHydrated, visible, ref, threshold]);
+  }, [isHydrated, ref, threshold, instant]);
 
+  // SSR / first paint: show content to avoid blank flash; then observe.
   return !isHydrated || visible;
 }
 
-/** Animated counter that runs when `active` becomes true. */
+/** Alias — same bidirectional behavior as useScrollReveal. */
+export function useInViewToggle(
+  ref: RefObject<HTMLElement | null>,
+  threshold = 0.3
+): boolean {
+  return useScrollReveal(ref, threshold);
+}
+
+/** Animated counter that runs when `active` becomes true; resets when false. */
 export function useCountUp(
   target: number,
   active: boolean,
@@ -98,7 +89,10 @@ export function useCountUp(
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      setValue(0);
+      return;
+    }
 
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"

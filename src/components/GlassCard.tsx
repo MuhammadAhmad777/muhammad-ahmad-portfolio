@@ -17,17 +17,19 @@ export default function GlassCard({
   hover = true,
 }: GlassCardProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useScrollReveal(ref);
+  const isVisible = useScrollReveal(ref, 0.12);
 
   return (
     <div
       ref={ref}
-      className={`glass-panel glow-behind rounded-2xl p-5 sm:p-6 h-full transition-all duration-500 ${
+      className={`glass-panel glow-behind rounded-2xl p-5 sm:p-6 h-full reveal-base ${
         hover ? "glass-panel-hover" : ""
       } ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+        isVisible
+          ? "reveal-shown"
+          : "reveal-exit opacity-0 translate-y-7"
       } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: isVisible ? `${delay}ms` : "0ms" }}
     >
       {children}
     </div>
