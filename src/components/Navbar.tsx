@@ -22,25 +22,27 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-6 flex items-center justify-between h-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 flex items-center justify-between h-16">
         <a
           href="#top"
-          className="flex items-center gap-2.5 text-lg font-bold text-text-primary tracking-tight"
+          className="flex items-center gap-2 sm:gap-2.5 text-base sm:text-lg font-bold text-text-primary tracking-tight min-w-0"
         >
           <img
             src="/favicon/favicon-32x32.png"
             alt=""
             width={28}
             height={28}
-            className="rounded-full"
+            className="rounded-full shrink-0"
             aria-hidden="true"
           />
-          {siteConfig.name.split(" ")[0]}
-          <span className="text-blue-400">.</span>
+          <span className="truncate">
+            {siteConfig.name.split(" ")[0]}
+            <span className="text-blue-400">.</span>
+          </span>
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-5 lg:gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -76,7 +78,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden glass-panel border-t border-white/5 px-6 pb-6 pt-4 space-y-4"
+          className="md:hidden glass-panel border-t border-white/5 px-4 sm:px-6 pb-6 pt-4 space-y-4 max-h-[calc(100svh-4rem)] overflow-y-auto"
         >
           {navLinks.map((link) => (
             <a

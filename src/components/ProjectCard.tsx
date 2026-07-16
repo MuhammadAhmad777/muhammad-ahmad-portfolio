@@ -35,7 +35,7 @@ export default function ProjectCard({
           </div>
         )}
 
-        <div className="flex items-center justify-between gap-3 mb-3">
+        <div className="flex flex-wrap items-start justify-between gap-2 sm:gap-3 mb-3">
           <div className="flex items-center gap-2.5 min-w-0">
             {index !== undefined && (
               <span className="shrink-0 text-xs font-mono text-blue-400/50">
@@ -47,7 +47,7 @@ export default function ProjectCard({
             </span>
           </div>
           {project.isPrivate ? (
-            <span className="shrink-0 text-xs font-medium text-text-secondary px-2.5 py-0.5 rounded-full bg-navy-600/80 border border-white/10">
+            <span className="shrink-0 text-[11px] sm:text-xs font-medium text-text-secondary px-2 sm:px-2.5 py-0.5 rounded-full bg-navy-600/80 border border-white/10">
               Private repo
             </span>
           ) : project.stats ? (
@@ -59,8 +59,8 @@ export default function ProjectCard({
 
         <h3
           className={`${
-            isFeatured ? "text-xl mb-2" : "text-lg mb-2"
-          } font-bold text-text-primary group-hover:text-blue-400 transition-colors duration-200`}
+            isFeatured ? "text-lg sm:text-xl mb-2" : "text-base sm:text-lg mb-2"
+          } font-bold text-text-primary group-hover:text-blue-400 transition-colors duration-200 break-words`}
         >
           {project.title}
         </h3>

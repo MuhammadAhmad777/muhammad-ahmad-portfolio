@@ -5,26 +5,26 @@ import { BookIcon, ExternalLinkIcon } from "./icons";
 
 export default function Research() {
   return (
-    <section id="research" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-4xl px-6">
+    <section id="research" className="py-16 sm:py-20 lg:py-28">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <SectionHeading eyebrow="Research">Publication</SectionHeading>
 
         <GlassCard className="max-w-2xl">
-          <div className="flex items-start gap-4">
-            <div className="shrink-0 w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/15 flex items-center justify-center mt-0.5">
-              <BookIcon className="w-5 h-5 text-blue-400" />
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-500/10 border border-blue-500/15 flex items-center justify-center mt-0.5">
+              <BookIcon className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
             </div>
-            <div>
+            <div className="min-w-0">
               <span className="inline-block text-xs font-medium text-blue-400 bg-blue-500/10 px-2.5 py-0.5 rounded-full mb-3">
                 {research.type}
               </span>
-              <h3 className="text-lg font-bold text-text-primary mb-1.5 leading-snug">
+              <h3 className="text-base sm:text-lg font-bold text-text-primary mb-1.5 leading-snug break-words">
                 {research.title}
               </h3>
-              <p className="text-sm text-blue-400/80 font-medium mb-3">
+              <p className="text-sm text-blue-400/80 font-medium mb-3 break-words">
                 {research.publication}
               </p>
-              <p className="text-text-secondary text-[15px] leading-relaxed mb-4">
+              <p className="text-text-secondary text-sm sm:text-[15px] leading-relaxed mb-4">
                 {research.description}
               </p>
               {research.url && (

@@ -8,7 +8,7 @@ import { GitHubIcon, LinkedInIcon, MailIcon } from "./icons";
 const formspreeFormId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
 
 const inputClasses =
-  "w-full px-4 py-3 rounded-xl bg-navy-800/60 border border-white/8 text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:border-blue-500/40 focus:ring-1 focus:ring-blue-500/20 transition-all duration-200 text-[15px]";
+  "w-full min-w-0 px-3.5 sm:px-4 py-3 rounded-xl bg-navy-800/60 border border-white/8 text-text-primary placeholder:text-text-secondary/50 focus:outline-none focus:border-blue-500/40 focus:ring-1 focus:ring-blue-500/20 transition-all duration-200 text-[15px]";
 
 const contactMethods = [
   {
@@ -87,24 +87,24 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 sm:py-28">
-      <div className="mx-auto max-w-4xl px-6">
+    <section id="contact" className="py-16 sm:py-20 lg:py-28">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Reveal>
-          <p className="eyebrow mb-4">Get in Touch</p>
+          <p className="eyebrow mb-3 sm:mb-4">Get in Touch</p>
           <h2 className="section-heading mb-4">
             Let&apos;s build something
             <span className="text-blue-400"> together</span>
           </h2>
-          <p className="text-text-secondary mb-12 max-w-xl text-[17px]">
+          <p className="text-text-secondary mb-8 sm:mb-12 max-w-xl text-[15px] sm:text-[17px]">
             I&apos;m open to remote AI/ML engineering roles and interesting
             collaboration opportunities. If you have a project that needs
             production-grade AI engineering, let&apos;s talk.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-          <Reveal className="lg:col-span-3" delay={100} variant="up">
-            <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10">
+          <Reveal className="lg:col-span-3 min-w-0" delay={100} variant="up">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <input
                 type="text"
                 name="_gotcha"
@@ -114,7 +114,7 @@ export default function Contact() {
                 aria-hidden="true"
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <div>
                   <label htmlFor="name" className="sr-only">
                     Name
@@ -189,7 +189,7 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="px-8 py-3 rounded-xl bg-blue-500 text-white font-semibold text-sm hover:bg-blue-400 transition-colors duration-200 shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-auto px-8 py-3 rounded-xl bg-blue-500 text-white font-semibold text-sm hover:bg-blue-400 transition-colors duration-200 shadow-lg shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={loading || submitted}
               >
                 {loading
@@ -201,18 +201,18 @@ export default function Contact() {
             </form>
           </Reveal>
 
-          <div className="lg:col-span-2 space-y-5">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-5 min-w-0">
             {contactMethods.map(({ label, value, href, Icon, external }, i) => (
-              <Reveal key={label} delay={140 + i * 80} variant="right">
+              <Reveal key={label} delay={140 + i * 80} variant="up">
                 <a
                   href={href}
                   {...(external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="flex items-center gap-4 glass-panel rounded-xl px-5 py-4 hover:border-blue-500/25 transition-all duration-200 group"
+                  className="flex items-center gap-3 sm:gap-4 glass-panel rounded-xl px-4 sm:px-5 py-3.5 sm:py-4 hover:border-blue-500/25 transition-all duration-200 group"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/15 flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5 text-blue-400" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-500/10 border border-blue-500/15 flex items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm text-text-secondary">{label}</p>

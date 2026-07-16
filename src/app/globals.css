@@ -22,6 +22,16 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #0A0E17;
+  color: #F4F6FB;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-size: clamp(16px, 2.5vw, 18px);
+  line-height: 1.65;
+  overflow-x: hidden;
 }
 
 /* Shared scroll-reveal base — snappy ease so content arrives with the scroll */
@@ -56,14 +66,6 @@ html {
 .hero-enter-4 { animation-delay: 0.34s; }
 .hero-enter-5 { animation-delay: 0.44s; }
 .hero-enter-6 { animation-delay: 0.54s; }
-
-body {
-  background-color: #0A0E17;
-  color: #F4F6FB;
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  font-size: 18px;
-  line-height: 1.65;
-}
 
 ::selection {
   background-color: rgba(59, 130, 246, 0.3);
@@ -126,10 +128,11 @@ body {
   }
 
   .section-heading {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.75rem, 5vw, 3rem);
     font-weight: 700;
     color: #F4F6FB;
     line-height: 1.2;
+    overflow-wrap: break-word;
   }
 
   .sr-only {
@@ -419,6 +422,51 @@ body {
     );
     pointer-events: none;
     z-index: 20;
+  }
+
+  .about-portrait {
+    width: 100%;
+  }
+}
+
+/* Responsive: About stage + hover lift on coarse pointers */
+@media (max-width: 640px) {
+  .about-section-glow {
+    background:
+      radial-gradient(
+        ellipse 70% 45% at 50% 30%,
+        rgba(59, 130, 246, 0.12) 0%,
+        transparent 70%
+      );
+  }
+
+  .about-accent-glyph {
+    display: none;
+  }
+
+  .about-portrait-ring,
+  .about-portrait-ring-inner {
+    width: 92%;
+    margin-left: -46%;
+    margin-top: -46%;
+    opacity: 0.7;
+  }
+
+  .about-portrait-ring-inner {
+    width: 72%;
+    margin-left: -36%;
+    margin-top: -36%;
+  }
+
+  .about-portrait-fade {
+    height: 34%;
+  }
+}
+
+@media (hover: none) {
+  .glass-panel-hover:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
 
