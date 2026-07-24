@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import CVProjects from "@/components/CVProjects";
 import Research from "@/components/Research";
@@ -19,6 +20,7 @@ export default function Home() {
         <Metrics />
         <About />
         <Skills />
+        <Experience />
         <Projects />
         <CVProjects />
         <Research />

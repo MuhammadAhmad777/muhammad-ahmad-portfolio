@@ -22,7 +22,7 @@ export default function GlassCard({
   return (
     <div
       ref={ref}
-      className={`glass-panel glow-behind rounded-2xl p-4 sm:p-5 lg:p-6 h-full min-w-0 reveal-base ${
+      className={`glass-panel glow-behind rounded-2xl p-5 sm:p-6 lg:p-7 h-full min-w-0 reveal-base ${
         hover ? "glass-panel-hover" : ""
       } ${
         isVisible

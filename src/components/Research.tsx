@@ -5,7 +5,7 @@ import { BookIcon, ExternalLinkIcon } from "./icons";
 
 export default function Research() {
   return (
-    <section id="research" className="py-16 sm:py-20 lg:py-28">
+    <section id="research" className="section-shell">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <SectionHeading eyebrow="Research">Publication</SectionHeading>
 
