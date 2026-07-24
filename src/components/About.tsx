@@ -36,7 +36,7 @@ function PortraitStage() {
 
 export default function About() {
   return (
-    <section id="about" className="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
+    <section id="about" className="section-shell relative overflow-hidden">
       <NeuralMesh variant="nodes" className="opacity-50" />
       <div
         className="about-section-glow pointer-events-none absolute inset-0"

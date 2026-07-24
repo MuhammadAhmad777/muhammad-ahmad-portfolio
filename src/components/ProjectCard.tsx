@@ -35,7 +35,7 @@ export default function ProjectCard({
           </div>
         )}
 
-        <div className="flex flex-wrap items-start justify-between gap-2 sm:gap-3 mb-3">
+        <div className="flex flex-wrap items-start justify-between gap-2 sm:gap-3 mb-4">
           <div className="flex items-center gap-2.5 min-w-0">
             {index !== undefined && (
               <span className="shrink-0 text-xs font-mono text-blue-400/50">
@@ -73,7 +73,7 @@ export default function ProjectCard({
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-white/5">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-5 pt-5 border-t border-white/5">
           {project.techStack.map((tech) => (
             <span
               key={tech}
@@ -93,6 +93,32 @@ export default function ProjectCard({
           >
             <GitHubIcon className="w-4 h-4" />
             View on GitHub
+            <ExternalLinkIcon className="w-3.5 h-3.5 opacity-70" />
+          </a>
+        )}
+
+        {project.viewUrl && (
+          <a
+            href={project.viewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          >
+            <ExternalLinkIcon className="w-4 h-4" />
+            View Live
+            <ExternalLinkIcon className="w-3.5 h-3.5 opacity-70" />
+          </a>
+        )}
+
+        {project.readMoreUrl && (
+          <a
+            href={project.readMoreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors duration-200"
+          >
+            <ExternalLinkIcon className="w-4 h-4" />
+            Read More
             <ExternalLinkIcon className="w-3.5 h-3.5 opacity-70" />
           </a>
         )}

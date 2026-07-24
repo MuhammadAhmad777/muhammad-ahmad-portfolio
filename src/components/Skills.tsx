@@ -4,11 +4,11 @@ import SectionHeading from "./SectionHeading";
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-16 sm:py-20 lg:py-28">
+    <section id="skills" className="section-shell">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading eyebrow="Expertise">Skills &amp; Technologies</SectionHeading>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
           {skillCategories.map((category, i) => (
             <GlassCard
               key={category.title}

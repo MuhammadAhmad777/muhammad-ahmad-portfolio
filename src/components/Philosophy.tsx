@@ -4,7 +4,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function Philosophy() {
   return (
-    <section className="py-16 sm:py-20 lg:py-28">
+    <section className="section-shell">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <SectionHeading eyebrow="Approach" className="mb-6">
           Engineering Philosophy
@@ -14,7 +14,7 @@ export default function Philosophy() {
           {philosophyPrinciples.map((principle, i) => (
             <Reveal key={principle.title} delay={i * 90} variant="up">
               <div
-                className={`flex items-start gap-3 sm:gap-5 py-6 sm:py-8 ${
+                className={`flex items-start gap-3 sm:gap-5 py-7 sm:py-9 ${
                   i < philosophyPrinciples.length - 1
                     ? "border-b border-white/5"
                     : ""

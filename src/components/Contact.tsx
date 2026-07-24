@@ -87,7 +87,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-28">
+    <section id="contact" className="section-shell">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <Reveal>
           <p className="eyebrow mb-3 sm:mb-4">Get in Touch</p>
